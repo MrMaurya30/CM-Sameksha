@@ -1,0 +1,115 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="MasterDept.master.cs" Inherits="Department_MasterDept" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+   <title> CM Sameksha</title>    
+<link rel="icon" href="../img/UP_Logo.png" type="image/x-icon"/>
+ <asp:ContentPlaceHolder ID="head" runat="server"></asp:ContentPlaceHolder>
+    <link href="../Admin/css/style.css" rel="stylesheet" />
+    <link href="../Admin/css/sweetalert.css" rel="stylesheet" />
+    <script src="../Admin/js/sweetalert.min.js"></script>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <!-- HEADER -->
+        <img src="../Admin/img/banner.png" class="banner" />
+        <!-- SIDEBAR + CONTENT -->
+        <main>
+            <!-- SIDEBAR -->
+            <div class="sidebar">
+                <div class="sidebar-header align-center">
+                  <div>
+                    <p class="sidebar-label"><%=Session["DeptName"].ToString() %></p>
+                  </div>
+                </div>
+                <p class="menu-title"><b>MENU</b></p>
+                <%string pageName = System.IO.Path.GetFileName(Request.Path);%>
+                <a href="../Department/DepartmentView.aspx" class="menu-item align-center <%=(pageName == "DepartmentView.aspx" || pageName == "View.aspx" ? "active" : "") %>">
+                    <svg
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        class="icon icon-tabler icons-tabler-outline icon-tabler-eye"
+                      >
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                        <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+                        <path
+                          d="M21 12c-2.4 4 -5.4 6 -9 6c-3.6 0 -6.6 -2 -9 -6c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6"
+                        />
+                      </svg>
+                    View Projects</a>
+                <a href="../Department/Profile.aspx" class="menu-item align-center <%= pageName == "Profile.aspx" ? "active" : "" %>">
+                    <svg
+                        viewBox="0 0 576 512"
+                        fill="currentColor"
+                        class="icon icon-tabler icons-tabler-outline icon-tabler-layout-dashboard"
+                      >
+                        <path d="M512 80c8.8 0 16 7.2 16 16l0 320c0 8.8-7.2 16-16 16L64 432c-8.8 0-16-7.2-16-16L48 96c0-8.8 7.2-16 16-16l448 0zM64 32C28.7 32 0 60.7 0 96L0 416c0 35.3 28.7 64 64 64l448 0c35.3 0 64-28.7 64-64l0-320c0-35.3-28.7-64-64-64L64 32zM208 248a56 56 0 1 0 0-112 56 56 0 1 0 0 112zm-32 40c-44.2 0-80 35.8-80 80 0 8.8 7.2 16 16 16l192 0c8.8 0 16-7.2 16-16 0-44.2-35.8-80-80-80l-64 0zM376 144c-13.3 0-24 10.7-24 24s10.7 24 24 24l80 0c13.3 0 24-10.7 24-24s-10.7-24-24-24l-80 0zm0 96c-13.3 0-24 10.7-24 24s10.7 24 24 24l80 0c13.3 0 24-10.7 24-24s-10.7-24-24-24l-80 0z"/></svg>
+                    Profile </a>
+                <a href="../Department/Changepassword.aspx" class="menu-item align-center <%= pageName=="Changepassword.aspx" ? "active" : "" %>">
+                    <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="icon icon-tabler icons-tabler-outline icon-tabler-key">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                    <path
+                      d="M16.555 3.843l3.602 3.602a2.877 2.877 0 0 1 0 4.069l-2.643 2.643a2.877 2.877 0 0 1 -4.069 0l-.301 -.301l-6.558 6.558a2 2 0 0 1 -1.239 .578l-.175 .008h-1.172a1 1 0 0 1 -.993 -.883l-.007 -.117v-1.172a2 2 0 0 1 .467 -1.284l.119 -.13l.414 -.414h2v-2h2v-2l2.144 -2.144l-.301 -.301a2.877 2.877 0 0 1 0 -4.069l2.643 -2.643a2.877 2.877 0 0 1 4.069 0"/>
+                    <path d="M15 9h.01" />
+                  </svg>
+                  Change Password
+                </a>
+                
+                <a class="menu-item align-center logout-btn" href="logout.aspx">
+                    <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="icon icon-tabler icons-tabler-outline icon-tabler-logout-2"
+                    >
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                    <path
+                    d="M10 8v-2a2 2 0 0 1 2 -2h7a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-7a2 2 0 0 1 -2 -2v-2"
+                    />
+                    <path d="M15 12h-12l3 -3" />
+                    <path d="M6 15l-3 -3" />
+                    </svg>Logout</a>
+                 
+            </div>
+          
+            <div class="content">
+                <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                </asp:ContentPlaceHolder>
+            </div>
+        </main>
+    </form>
+
+    <%--    <script src="script/jquery-migrate-3.6.0.min.js"></script>
+    <link href="../css/jquery-ui.css" rel="stylesheet" />--%>
+    <input type="text" class="datepicker" readonly style="opacity: 0; position: absolute;">
+    <script>
+        $(document).ready(function () {
+            $(".datepicker").datepicker({
+                dateFormat: "mm/dd/yy",
+                changeMonth: true,
+                changeYear: true,
+                //yearRange: "1940:+0",
+                //minDate: new Date(1940, 0, 1),
+                //maxDate: 0,
+                //defaultDate: new Date(1940, 0, 1)
+            });
+        });
+    </script>
+</body>
+</html>

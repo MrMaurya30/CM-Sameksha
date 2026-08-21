@@ -1,0 +1,188 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="AdminMaster.master.cs" Inherits="Admin_AdminMaster" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    
+    <title> CM Sameksha</title>
+      <link rel="icon" href="img/UP_Logo.png" type="image/x-icon"/>
+    
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+
+    <%--<link href="css/bootstrap.min.css" rel="stylesheet" />--%>
+    <link href="css/style.css" rel="stylesheet" />
+    <link href="css/sweetalert.css" rel="stylesheet" />
+    <script src="js/sweetalert.min.js"></script>
+
+</head>
+<body>
+    <form id="form1" runat="server">
+    <!-- HEADER -->
+    <img src="img/banner.png" class="banner" />
+    <!-- SIDEBAR + CONTENT -->
+    <main>
+            <!-- SIDEBAR -->
+            <div class="sidebar">
+                <div class="sidebar-header align-center">
+                  <div>
+                    <p class="sidebar-label"><%= Session["EmployeeName"].ToString() %></p>
+                  </div>
+                </div>
+                <p class="menu-title"><b>MENU</b></p>
+                <%string pageName = System.IO.Path.GetFileName(Request.Path);%>
+                  <%if (Session["RoleID"].ToString() == "0")
+                    {%> 
+                <a href="Default.aspx" class="menu-item align-center <%= (pageName == "Default.aspx")|| (pageName == "MeetingProject.aspx" )? "active" : "" %>">
+                    <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="icon icon-tabler icons-tabler-outline icon-tabler-layout-dashboard"
+                    >
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                    <path
+                      d="M5 4h4a1 1 0 0 1 1 1v6a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1v-6a1 1 0 0 1 1 -1"
+                    />
+                    <path
+                      d="M5 16h4a1 1 0 0 1 1 1v2a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1v-2a1 1 0 0 1 1 -1"
+                    />
+                    <path
+                      d="M15 12h4a1 1 0 0 1 1 1v6a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1v-6a1 1 0 0 1 1 -1"
+                    />
+                    <path
+                      d="M15 4h4a1 1 0 0 1 1 1v2a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1v-2a1 1 0 0 1 1 -1"
+                    />
+                  </svg>Dashboard</a>
+                <a class="menu-item align-center <%= pageName == "Department.aspx" ? "active" : "" %>" href="Department.aspx">
+                    <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="icon icon-tabler icons-tabler-outline icon-tabler-building-skyscraper"
+                    >
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                    <path d="M3 21l18 0" />
+                    <path d="M5 21v-14l8 -4v18" />
+                    <path d="M19 21v-10l-6 -4" />
+                    <path d="M9 9l0 .01" />
+                    <path d="M9 12l0 .01" />
+                    <path d="M9 15l0 .01" />
+                    <path d="M9 18l0 .01" />
+                    </svg>
+                    Add Department</a>
+                <a class="menu-item align-center <%= pageName == "Project.aspx" ? "active" : "" %>" href="Project.aspx">
+                    <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="icon icon-tabler icons-tabler-outline icon-tabler-plus"
+                    >
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                    <path d="M12 5l0 14" />
+                    <path d="M5 12l14 0" />
+                    </svg> Add Project</a>
+ 
+                <a class="menu-item align-center <%= (pageName == "ProjectInfo.aspx" || pageName == "ViewUpdate.aspx" || pageName == "View.aspx")? "active" : "" %>" href="ProjectInfo.aspx">
+                    <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="icon icon-tabler icons-tabler-outline icon-tabler-eye"
+                    >
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                    <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+                    <path
+                    d="M21 12c-2.4 4 -5.4 6 -9 6c-3.6 0 -6.6 -2 -9 -6c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6"
+                    />
+                    </svg>
+                    View Projects</a>
+                <%}
+                    else
+                    {  %>
+                <a class="menu-item align-center <%= pageName == "DepartmentView.aspx" ? "active" : "" %>" href="../Department/DepartmentView.aspx">
+                    <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="icon icon-tabler icons-tabler-outline icon-tabler-eye"
+                    >
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                    <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+                    <path
+                    d="M21 12c-2.4 4 -5.4 6 -9 6c-3.6 0 -6.6 -2 -9 -6c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6"
+                    />
+                    </svg>
+                    View Projects</a>
+                <%} %>
+                <a class="menu-item align-center logout-btn" href="Logout.aspx">
+                    <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    class="icon icon-tabler icons-tabler-outline icon-tabler-logout-2"
+                    >
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                    <path
+                    d="M10 8v-2a2 2 0 0 1 2 -2h7a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-7a2 2 0 0 1 -2 -2v-2"
+                    />
+                    <path d="M15 12h-12l3 -3" />
+                    <path d="M6 15l-3 -3" />
+                    </svg>Logout</a>
+                </div>
+            <div class="content">
+                <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                </asp:ContentPlaceHolder>
+            </div>
+    </main>
+</form>
+    <input type="text" class="datepicker" readonly style="opacity: 0; position: absolute;">
+    <script>
+        $(document).ready(function () {
+            $(".datepicker").each(function () {
+                if (!$(this).val()) {
+                    $(this).val("");
+                }
+
+                $(this).datepicker({
+                    dateFormat: "yy/mm/dd",
+                    changeMonth: true,
+                    changeYear: true
+                });
+            });
+        });
+        //$(document).ready(function () {
+        //    $(".datepicker").datepicker({
+        //        dateFormat: "yy/mm/dd",
+        //        changeMonth: true,
+        //        changeYear: true,
+
+        //        //yearRange: "1940:+0",
+        //        //minDate: new Date(1940, 0, 1),
+        //        //maxDate: 0,
+        //        //defaultDate: new Date(1940, 0, 1)
+        //    });
+        //});
+    </script>
+
+</body>
+</html>
